@@ -10,7 +10,7 @@ setup(
     author_email="viniarck@gmail.com",
     packages=["podcaststore_api"],
     install_requires=[
-        "django==2.2",
+        "django==2.2.4",
         "djangorestframework==3.9.2",
         "psycopg2-binary==2.8.1",
         "gunicorn==19.9.0",
