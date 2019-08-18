@@ -1,0 +1,7 @@
+[run]
+
+source =
+    ./podcaststore_api
+omit =
+    ./podcaststore_api/migrations/*
+    ./podcaststore_api/apps.py
