@@ -1,11 +1,15 @@
 image: python
 
+services:
+  - docker:dind
+
 stages:
 - build
 - test
 
 before_script:
 - pip install -e .[dev]
+- docker version
 
 python36-lint:
   image: python:3.6

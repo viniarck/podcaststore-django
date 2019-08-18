@@ -1,0 +1,60 @@
+version: '3.1'
+
+# base service definitions, environment variables secrets should be updated and loaded from docker-compose.secrets.yml
+
+services:
+  db:
+    image: postgres:9.6.8-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: db_user
+      POSTGRES_PASSWORD: db_pass
+      POSTGRES_DB: podcast_api
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    expose:
+      - "5432"
+  cache:
+    restart: always
+    image: redis:5.0.4-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    expose:
+      - "6379"
+  api:
+    image: registry.gitlab.com/viniarck/postcaststore-django/api:1.0
+    command: sh -c "python ./scripts/wait_for_services.py && python manage.py migrate && ./scripts/serve_forever.sh"
+    tty: true
+    stdin_open: true
+    restart: always
+    environment:
+      DB_NAME: podcast_api
+      DB_USER: db_user
+      DB_PW: db_pass
+      DB_HOST: db
+      DB_PORT: 5432
+      CACHE_HOST: cache
+      CACHE_PORT: 6379
+    build:
+      context: .
+      dockerfile: ./docker_build/Dockerfile.api
+    depends_on:
+      - db
+      - cache
+    expose:
+      - "8000"
+  reverse-proxy:
+    image: registry.gitlab.com/viniarck/postcaststore-django/nginx:1.17.0
+    restart: always
+    build:
+      context: .
+      dockerfile: ./docker_build/Dockerfile.nginx
+    ports:
+      - "4000:4000"
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
+  redis_data:

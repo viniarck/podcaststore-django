@@ -1,0 +1,6 @@
+FROM nginx:1.17.0
+
+LABEL maintainer "viniarck@gmail.com"
+
+RUN rm /etc/nginx/conf.d/default.conf
+COPY docker_build/nginx/nginx.conf /etc/nginx/conf.d
