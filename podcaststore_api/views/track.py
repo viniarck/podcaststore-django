@@ -1,6 +1,5 @@
 from rest_framework.views import APIView
 import rest_framework.status as status
-from django.core.cache import cache
 from rest_framework.response import Response
 from rest_framework.request import Request
 from podcaststore_api.models import Podcast
