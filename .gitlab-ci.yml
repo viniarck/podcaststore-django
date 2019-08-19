@@ -8,6 +8,8 @@ variables:
   POSTGRES_DB: podcast_api
   POSTGRES_USER: db_user
   POSTGRES_PASSWORD: db_pass
+  DB_HOST: postgres
+  CACHE_HOST: redis
   DB_NAME: podcast_api
   DB_USER: db_user
   DB_PW: db_pass
