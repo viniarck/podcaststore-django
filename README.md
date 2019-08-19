@@ -6,11 +6,11 @@ This is a back-end API written in Python with Django and DRF to allow users to a
 
 ## API Docs
 
-Based on [these requirements](./docs/api_requirements.md), the following endpoints are available, which you can find the documentation [on this link](http://podcaststore.devdaily.org:4000/v1/doc/).
+Based on [these requirements](./docs/api_requirements.md), the [following endpoints](http://podcaststore.devdaily.org:4000/v1/doc/) are available.
 
 ## Demo
 
-You can check a demo running on my VPS [on this URL](http://podcaststore.devdaily.org:8080/) of an Web front-end App which consumes this API. It's running over HTTP instead of HTTPs to simplify the deployment.
+You can check a demo running on my VPS [on this URL](http://podcaststore.devdaily.org:8080/) of an Web front-end App which consumes this API.
 
 ### Database UML diagram
 
