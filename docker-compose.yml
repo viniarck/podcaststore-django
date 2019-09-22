@@ -44,6 +44,15 @@ services:
       - cache
     expose:
       - "8000"
+  swagger-ui:
+    image: registry.gitlab.com/viniarck/podcaststore-django/swagger-ui:v3.22.0
+    build:
+      context: .
+      dockerfile: ./docker_build/Dockerfile.swagger-ui
+    ports:
+      - "8080"
+    environment:
+      SWAGGER_JSON: /opt/api_spec.json
   reverse-proxy:
     image: registry.gitlab.com/viniarck/postcaststore-django/nginx:1.17.0
     restart: always
@@ -52,6 +61,7 @@ services:
       dockerfile: ./docker_build/Dockerfile.nginx
     ports:
       - "4000:4000"
+      - "4040:4040"
     depends_on:
       - api
 
