@@ -1,0 +1,535 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "podcaststore-django",
+    "description": "podcaststore-django",
+    "contact": {
+      "email": "viniarck@gmail.com"
+    },
+    "license": {
+      "name": "Apache"
+    },
+    "version": "v1"
+  },
+  "host": "localhost:8000",
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/v1",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "Basic": {
+      "type": "basic"
+    }
+  },
+  "security": [
+    {
+      "Basic": []
+    }
+  ],
+  "paths": {
+    "/auth/": {
+      "post": {
+        "operationId": "auth_create",
+        "description": "Authenticate or Re-authtenticate a User.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/identify/": {
+      "post": {
+        "operationId": "identify_create",
+        "description": "Post a new Login.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "tags": [
+          "identify"
+        ]
+      },
+      "parameters": []
+    },
+    "/podcast/": {
+      "get": {
+        "operationId": "podcast_list",
+        "description": "Get a list of Podcasts.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Podcast"
+              }
+            }
+          }
+        },
+        "tags": [
+          "podcast"
+        ]
+      },
+      "post": {
+        "operationId": "podcast_create",
+        "description": "Post a new Podcast.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Podcast"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Podcast"
+            }
+          }
+        },
+        "tags": [
+          "podcast"
+        ]
+      },
+      "parameters": []
+    },
+    "/podcast/{podcast_id}/": {
+      "get": {
+        "operationId": "podcast_read",
+        "description": "Get a Podcast given its id.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Podcast"
+            }
+          }
+        },
+        "tags": [
+          "podcast"
+        ]
+      },
+      "put": {
+        "operationId": "podcast_update",
+        "description": "Update a Podcast.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Podcast"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Podcast"
+            }
+          }
+        },
+        "tags": [
+          "podcast"
+        ]
+      },
+      "delete": {
+        "operationId": "podcast_delete",
+        "description": "Delete a Podcast.",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "podcast"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "podcast_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/podcast/{podcast_id}/tag/": {
+      "get": {
+        "operationId": "podcast_tag_list",
+        "description": "Get a list of unique Tags of a Podcast's Tracks.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "podcast"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "podcast_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/track/": {
+      "get": {
+        "operationId": "track_list",
+        "description": "Get a list of Tracks.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Track"
+              }
+            }
+          }
+        },
+        "tags": [
+          "track"
+        ]
+      },
+      "parameters": []
+    },
+    "/track/podcast/{podcast_id}/": {
+      "get": {
+        "operationId": "track_podcast_read",
+        "description": "Get a list of Tracks of a Podcast.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Track"
+            }
+          }
+        },
+        "tags": [
+          "track"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "podcast_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/track/podcast/{podcast_id}/monthly_download_stats/": {
+      "get": {
+        "operationId": "track_podcast_monthly_download_stats_list",
+        "description": "Get the total number of track downloads per month of a Podcast.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TrackPodcastMonthly"
+            }
+          }
+        },
+        "tags": [
+          "track"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "podcast_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/track/{track_id}/": {
+      "get": {
+        "operationId": "track_read",
+        "description": "Get a Track given its id.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Track"
+            }
+          }
+        },
+        "tags": [
+          "track"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "track_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "Login": {
+      "required": [
+        "username",
+        "password"
+      ],
+      "type": "object",
+      "properties": {
+        "username": {
+          "title": "Username",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "password": {
+          "title": "Password",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        }
+      }
+    },
+    "User": {
+      "required": [
+        "username",
+        "email",
+        "password"
+      ],
+      "type": "object",
+      "properties": {
+        "username": {
+          "title": "Username",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "email": {
+          "title": "Email",
+          "type": "string",
+          "format": "email",
+          "minLength": 1
+        },
+        "password": {
+          "title": "Password",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "first_name": {
+          "title": "First name",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "last_name": {
+          "title": "Last name",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        }
+      }
+    },
+    "Podcast": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 32,
+          "minLength": 1
+        },
+        "title": {
+          "title": "Title",
+          "type": "string",
+          "maxLength": 255,
+          "x-nullable": true
+        },
+        "start_date": {
+          "title": "Start date",
+          "type": "string",
+          "format": "date",
+          "x-nullable": true
+        }
+      }
+    },
+    "Track": {
+      "required": [
+        "title"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "integer",
+          "readOnly": true
+        },
+        "title": {
+          "title": "Title",
+          "type": "string",
+          "maxLength": 255,
+          "minLength": 1
+        },
+        "podcast_id": {
+          "title": "Podcast id",
+          "type": "string",
+          "readOnly": true
+        },
+        "media_url": {
+          "title": "Media url",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "x-nullable": true
+        },
+        "release_date": {
+          "title": "Release date",
+          "type": "string",
+          "format": "date",
+          "x-nullable": true
+        },
+        "duration": {
+          "title": "Duration",
+          "type": "string",
+          "x-nullable": true
+        },
+        "downloaded": {
+          "title": "Downloaded",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "TrackPodcastMonthly": {
+      "required": [
+        "january",
+        "february",
+        "march",
+        "april",
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "novemeber",
+        "december"
+      ],
+      "type": "object",
+      "properties": {
+        "january": {
+          "title": "January",
+          "type": "integer"
+        },
+        "february": {
+          "title": "February",
+          "type": "integer"
+        },
+        "march": {
+          "title": "March",
+          "type": "integer"
+        },
+        "april": {
+          "title": "April",
+          "type": "integer"
+        },
+        "may": {
+          "title": "May",
+          "type": "integer"
+        },
+        "june": {
+          "title": "June",
+          "type": "integer"
+        },
+        "july": {
+          "title": "July",
+          "type": "integer"
+        },
+        "august": {
+          "title": "August",
+          "type": "integer"
+        },
+        "september": {
+          "title": "September",
+          "type": "integer"
+        },
+        "october": {
+          "title": "October",
+          "type": "integer"
+        },
+        "novemeber": {
+          "title": "Novemeber",
+          "type": "integer"
+        },
+        "december": {
+          "title": "December",
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
