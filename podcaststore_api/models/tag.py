@@ -17,7 +17,7 @@ class Tag(ValidateOnSaveMixin, TimeStampedModel):
     track = models.ForeignKey(Track, on_delete=models.CASCADE)
 
     def __repr__(self) -> str:
-        """Podcast __repr__."""
+        """Tag __repr__."""
         return f"Tag({self.id}, {self.name})"
 
 

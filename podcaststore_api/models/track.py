@@ -25,7 +25,7 @@ class Track(ValidateOnSaveMixin, TimeStampedModel):
         return len(Download.objects.filter(track_id=self.id))
 
     def __repr__(self) -> str:
-        """Podcast __repr__."""
+        """Track __repr__."""
         return f"Track({self.id}, {self.title})"
 
 

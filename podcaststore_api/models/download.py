@@ -20,7 +20,7 @@ class Download(ValidateOnSaveMixin, TimeStampedModel):
     date = models.DateTimeField(default=now)
 
     def __repr__(self) -> str:
-        """Podcast __repr__."""
+        """Download __repr__."""
         return f"Download({self.id}, {self.track.id}, {self.date})"
 
 

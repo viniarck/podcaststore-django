@@ -24,7 +24,7 @@ class Reaction(ValidateOnSaveMixin, TimeStampedModel):
     code = models.CharField(max_length=16, choices=CODE_CHOICES)
 
     def __repr__(self) -> str:
-        """Podcast __repr__."""
+        """Reaction __repr__."""
         return f"Reaction({self.id}, {self.code})"
 
 
