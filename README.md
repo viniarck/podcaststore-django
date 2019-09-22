@@ -17,3 +17,12 @@ You can check a demo running on my VPS [on this URL](http://podcaststore.devdail
 Based on the [API and back-end requirements](./docs/api_requirements.md), the following UML relational diagram will be implemented:
 
 ![uml](./docs/schema.png)
+
+
+## Running locally
+
+Make sure you have docker-compose installed first.
+
+```
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.secrets.yml up -d
+```
