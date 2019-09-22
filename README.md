@@ -6,7 +6,7 @@ This is a back-end API written in Python with Django and DRF to allow users to a
 
 ## API Docs
 
-Based on [these requirements](./docs/api_requirements.md), the [following endpoints](http://podcaststore.devdaily.org:4000/v1/doc/) are available.
+Based on [these requirements](./docs/api_requirements.md), the [following endpoints](http://podcaststore.devdaily.org:4040) are available.
 
 ## Demo
 
